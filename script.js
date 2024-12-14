@@ -62,3 +62,11 @@ function createHeart() {
 
 // Gera corações a cada 500ms
 setInterval(createHeart, 500);
+
+// Reproduzir música após interação do usuário
+document.getElementById('playMusic').addEventListener('click', () => {
+    const iframe = document.querySelector('iframe');
+    const src = iframe.getAttribute('src');
+    iframe.setAttribute('src', `${src}&auto_play=true`);
+    document.getElementById('playMusic').style.display = 'none'; // Esconde o botão após o clique
+});
