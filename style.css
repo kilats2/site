@@ -1,0 +1,93 @@
+/* Estilo geral da página */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #6A0DAD;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Galeria de imagens deslizante */
+.gallery-container {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.gallery {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+/* Botões de navegação */
+.arrow-left, .arrow-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+}
+
+.arrow-left {
+    left: 10px;
+}
+
+.arrow-right {
+    right: 10px;
+}
+
+/* Contador */
+.counter-container {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.counter {
+    margin: 5px 0;
+}
+
+/* Mensagem personalizada */
+.message {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 0 20px;
+}
+
+/* Corações animados */
+.heart {
+    position: absolute;
+    font-size: 2rem;
+    color: red;
+    animation: fall 5s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    0% {
+        top: -10%;
+        opacity: 1;
+    }
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
