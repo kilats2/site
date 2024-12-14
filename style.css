@@ -1,112 +1,113 @@
-/* Estilo geral da página */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #6A0DAD;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
-}
+ /* Estilo geral da página */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #6A0DAD;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
 
-/* Galeria de imagens deslizante */
-.gallery-container {
-    position: relative;
-    width: 90%;
-    max-width: 400px;
-    overflow: hidden;
-    margin: 20px auto;
-}
+        /* Galeria de imagens */
+        .gallery-container {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
 
-.gallery {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
+        .gallery {
+            display: flex;
+            transition: transform 1s ease-in-out;
+        }
 
-.gallery img {
-    width: 100%;
-    border-radius: 15px;
-    object-fit: cover;
-}
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            object-fit: cover;
+        }
 
-/* Botões de navegação */
-.arrow-left, .arrow-right {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2rem;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    user-select: none;
-}
+        /* Contador de tempo */
+        .counter {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-.arrow-left {
-    left: 10px;
-}
+        /* Mensagem personalizada */
+        .message {
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 0 20px;
+        }
 
-.arrow-right {
-    right: 10px;
-}
+        /* Corações animados */
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            color: red;
+            animation: fall 5s linear infinite;
+            pointer-events: none;
+        }
 
-/* Contador */
-.counter-container {
-    font-size: 1.5rem;
-    margin: 10px 0;
-    text-align: center;
-}
+        @keyframes fall {
+            0% {
+                top: -10%;
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
 
-.counter {
-    margin: 5px 0;
-}
+        /* Design responsivo */
+        @media (max-width: 768px) {
+            .gallery-container {
+                height: 500px;
+            }
 
-/* Mensagem personalizada */
-.message {
-    text-align: center;
-    font-size: 1.2rem;
-    padding: 0 20px;
-}
+            .counter {
+                font-size: 1.2rem;
+            }
 
-/* Corações animados */
-.heart {
-    position: absolute;
-    font-size: 2rem;
-    color: red;
-    animation: fall 5s linear infinite;
-    pointer-events: none;
-}
+            .message {
+                font-size: 1rem;
+            }
+        }
 
-@keyframes fall {
-    0% {
-        top: -10%;
-        opacity: 1;
-    }
-    100% {
-        top: 100%;
-        opacity: 0;
-    }
-}
-.play-button {
-    background-color: #fff;
-    color: #6A0DAD;
-    font-size: 1.2rem;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
+        /* Botão de reprodução */
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            z-index: 1000;
+        }
 
-.play-button:hover {
-    background-color: #6A0DAD;
-    color: #fff;
-}
+        .play-button:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .play-icon {
+            font-size: 1.5rem;
+            color: #6A0DAD;
+        }

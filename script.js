@@ -1,72 +1,72 @@
-// Configuração inicial do contador de tempo juntos
-const startDate = new Date('2019-12-27'); // Data do início do namoro
-const counterElement = document.getElementById('counter'); // Contador de data
-const counterElement2 = document.getElementById('counter2'); // Contador de tempo
+ // Contador de tempo juntos
+        const startDate = new Date('2019-12-27'); // Data do início do namoro
+        const counterElement = document.getElementById('counter');
 
-function updateCounter() {
-    const now = new Date();
-    const years = now.getFullYear() - startDate.getFullYear();
-    const months = now.getMonth() - startDate.getMonth() + (years * 12);
-    const days = Math.floor((now - new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())) / (1000 * 60 * 60 * 24)) % 30;
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
+        function updateCounter() {
+            const now = new Date();
+            let years = now.getFullYear() - startDate.getFullYear();
+            let months = now.getMonth() - startDate.getMonth();
+            let days = now.getDate() - startDate.getDate();
 
-    counterElement.textContent = `${Math.floor(months / 12)} anos, ${months % 12} meses, ${days} dias`;
-    counterElement2.textContent = `${hours.toString().padStart(2, "0")} horas : ${minutes.toString().padStart(2, "0")} minutos : ${seconds.toString().padStart(2, "0")} segundos`;
-}
+            if (days < 0) {
+                months -= 1;
+                const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += previousMonth.getDate();
+            }
 
-updateCounter();
-setInterval(updateCounter, 1000); // Atualiza o contador a cada segundo
+            if (months < 0) {
+                years -= 1;
+                months += 12;
+            }
 
-// Configuração da galeria de fotos
-const gallery = document.querySelector('.gallery');
-const prevBtn = document.querySelector('.arrow-left');
-const nextBtn = document.querySelector('.arrow-right');
-let currentIndex = 0;
+            counterElement.textContent = `${years} anos, ${months} meses, ${days} dias`;
+        }
 
-function updateGallery() {
-    const width = gallery.parentElement.offsetWidth;
-    gallery.style.transform = `translateX(-${currentIndex * width}px)`;
-}
+        updateCounter();
+        setInterval(updateCounter, 1000);
 
-prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex === 0) ? gallery.children.length - 1 : currentIndex - 1;
-    updateGallery();
-});
+        // Galeria automática
+        const gallery = document.querySelector('.gallery');
+        const images = document.querySelectorAll('.gallery img');
+        let index = 0;
 
-nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex === gallery.children.length - 1) ? 0 : currentIndex + 1;
-    updateGallery();
-});
+        function updateGallery() {
+            index = (index + 1) % images.length;
+            gallery.style.transform = `translateX(-${index * 100}%)`;
+        }
 
-// Alterna automaticamente as fotos a cada 3 segundos
-setInterval(() => {
-    currentIndex = (currentIndex + 1) % gallery.children.length;
-    updateGallery();
-}, 3000);
+        setInterval(updateGallery, 3500);
 
-// Função para gerar corações caindo
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.textContent = '❤️';
-    heart.style.left = `${Math.random() * 100}%`;
-    heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
-    document.body.appendChild(heart);
+        // Animação de corações com limite maior
+        const maxHearts = 30; // Limite maior de corações
+        const heartElements = [];
 
-    heart.addEventListener('animationend', () => {
-        heart.remove();
-    });
-}
+        function createHeart() {
+            if (heartElements.length >= maxHearts) return;
 
-// Gera corações a cada 500ms
-setInterval(createHeart, 500);
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.textContent = '❤️';
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.animationDuration = `${Math.random() * 2 + 3}s`;
+            document.body.appendChild(heart);
+            heartElements.push(heart);
 
-// Reproduzir música após interação do usuário
-document.getElementById('playMusic').addEventListener('click', () => {
-    const iframe = document.querySelector('iframe');
-    const src = iframe.getAttribute('src');
-    iframe.setAttribute('src', `${src}&auto_play=true`);
-    document.getElementById('playMusic').style.display = 'none'; // Esconde o botão após o clique
-});
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+                heartElements.splice(heartElements.indexOf(heart), 1);
+            });
+        }
+
+        setInterval(createHeart, 300); // Corações aparecendo mais rápido
+
+        // Controle de reprodução de música
+        const playButton = document.getElementById('play-button');
+        const audioPlayer = document.getElementById('audio-player');
+
+        playButton.addEventListener('click', () => {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playButton.style.display = 'none'; // Esconde o botão após clicar
+            }
+        });
