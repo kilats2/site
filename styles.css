@@ -5,7 +5,7 @@
             background: linear-gradient(45deg, #D4A6E2, #F9A8D4, #FBCFE8, #FFD700);
             background-size: 300% 300%;
             animation: gradient 10s ease infinite; /* Efeito de animação suave */
-            color: white;
+            color: red;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -103,6 +103,8 @@
             color: red;
             animation: fall 5s linear infinite;
             pointer-events: none;
+            filter: brightness(1);  /* Mantém a cor sem "ascender" */
+
         }
 
      @keyframes fall {
