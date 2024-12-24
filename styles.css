@@ -5,7 +5,7 @@
             background: linear-gradient(45deg, #D4A6E2, #F9A8D4, #FBCFE8, #FFD700);
             background-size: 300% 300%;
             animation: gradient 10s ease infinite; /* Efeito de animação suave */
-            color: red;
+            color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
