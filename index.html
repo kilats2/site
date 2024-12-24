@@ -6,39 +6,86 @@
     <title>5 Anos de Namoro</title>
         <!-- Referência ao arquivo CSS -->
         <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-    <!-- Galeria de Fotos -->
-    <div class="gallery-container">
-        <div class="gallery">
-            <img src="foto1.jpg" alt="Foto 1">
-            <img src="foto2.jpg" alt="Foto 2">
-            <img src="https://via.placeholder.com/400x600/7FFF7F/333333?text=Foto+3" alt="Foto 3">
-            <img src="https://via.placeholder.com/400x600/7FBFFF/333333?text=Foto+4" alt="Foto 4">
+    </head>
+    <body>
+    
+        <!-- Galeria de Fotos -->
+        <div class="gallery-container">
+            <div class="gallery">
+                <img src="foto1.jpg" alt="Foto 1">
+                <img src="foto2.jpg" alt="Foto 2">
+                <img src="https://via.placeholder.com/400x600/7FFF7F/333333?text=Foto+3" alt="Foto 3">
+                <img src="https://via.placeholder.com/400x600/7FBFFF/333333?text=Foto+4" alt="Foto 4">
+            </div>
         </div>
-    </div>
-
-    <!-- Contador de tempo juntos -->
-    <div class="counter" id="counter"></div>
-
-    <!-- Mensagem personalizada -->
-    <div class="message">
-        <p>Parabéns para nós, meu amor! Que venham muitos anos mais ao seu lado. ❤️</p>
-    </div>
-
-    <!-- Botão de reprodução de música -->
-    <button id="play-button" class="play-button">
-        <span class="play-icon">▶️</span>
-    </button>
-
-    <!-- Áudio local -->
-    <audio id="audio-player" src="musica.mp3">
-    </audio>
-
-    <!-- Referência ao arquivo JavaScript -->
-     <script src="scripts.js">
-     </script>
-     
+    
+        <!-- Divisória entre galeria e contador -->
+        <div class="divider"></div>
+    
+        
+        <!-- Frase "Juntos:" -->
+        <div class="together">
+            <p>Juntos:</p>
+        </div>
+    
+        <!-- Contador de tempo juntos -->
+        <div class="counter" id="counter"></div>
+    
+        <!-- Contador de horas, minutos e segundos -->
+        <div class="time" id="time-counter"></div>
+    
+        <!-- espaco em branco -->
+        <div class="together">
+            <p></p>
+        </div>
+    
+        <!-- Divisória entre contador e mensagem -->
+        <div class="divider"></div>
+    
+        <!-- Mensagem personalizada -->
+        <div class="message">
+            <p>Parabéns para nós, meu amor! Que venham muitos anos mais ao seu lado. ❤️</p>
+        </div>
+    
+        <div class="divider"></div>
+        
+        <!-- Jogo da forca -->
+        <div class="hangman-container">
+            <h2>Jogo da Forca do amor ❤️</h2>
+            <p>Adivinhe a palavra que tem 5 letras!</p>
+            
+            <!-- Exibição do boneco da forca -->
+            <div class="game-area">
+                <div class="word-display" id="word-display">_ _ _ _ _</div>
+                <div class="hangman" id="hangman">
+                    <pre>
+          +---+
+          |   |
+              |
+              |
+              |
+              |
+        =========
+                    </pre>
+                </div>
+            </div>
+        
+            <!-- Botões de letras -->
+            <div class="letters-container" id="letters-container"></div>
+            <p id="message"></p>
+        </div>
+        
+    
+        <!-- Botão de reprodução de música -->
+        <button id="play-button" class="play-button">
+            <span class="play-icon">▶️</span>
+        </button>
+    
+        <!-- Áudio local -->
+        <audio id="audio-player" src="musica.mp3"></audio>
+           
+        <!-- Referência ao arquivo JavaScript -->
+         <script src="scripts.js">
+        </script>
 </body>
 </html>

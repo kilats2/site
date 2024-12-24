@@ -1,8 +1,10 @@
- /* Estilo geral da página */
+        /* Estilo geral da página */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #6A0DAD;
+            background: linear-gradient(45deg, #D4A6E2, #F9A8D4, #FBCFE8, #FFD700);
+            background-size: 300% 300%;
+            animation: gradient 10s ease infinite; /* Efeito de animação suave */
             color: white;
             display: flex;
             flex-direction: column;
@@ -11,6 +13,36 @@
             min-height: 100vh;
             padding: 20px;
             overflow-x: hidden;
+            opacity: 0;
+            animation: fadeIn 4s ease-out forwards;
+        }
+        
+        /* Animação do gradiente */
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            25% {
+                background-position: 50% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            75% {
+                background-position: 50% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         /* Galeria de imagens */
@@ -40,7 +72,21 @@
         .counter {
             font-size: 1.5rem;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* "Juntos:" acima do contador */
+        .together {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        /* Contador de horas, minutos e segundos */
+        .time {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-top: 10px;
         }
 
         /* Mensagem personalizada */
@@ -85,6 +131,15 @@
             }
         }
 
+        /* Divisórias */
+        .divider {
+            width: 80%;
+            height: 2px;
+            background-color: white;
+            margin: 20px 0;
+        }
+
+
         /* Botão de reprodução */
         .play-button {
             width: 60px;
@@ -110,4 +165,83 @@
         .play-icon {
             font-size: 1.5rem;
             color: #6A0DAD;
+        }
+
+        .hangman-container {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hangman-container h2 {
+            color: #ffffff;
+        }
+
+        .game-area {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .word-display {
+            font-size: 2rem;
+            letter-spacing: 0.5rem;
+        }
+
+        .hangman {
+            font-family: monospace;
+            font-size: 1.2rem;
+            white-space: pre;
+            text-align: left;
+        }
+
+        .letters-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .letter-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            background: #00bfff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #ffffff;
+            transition: background 0.3s ease;
+        }
+
+        .letter-btn:hover {
+            background: #FFC107;
+        }
+
+        .letter-btn.correct {
+            background: #4CAF50; /* Verde ao acertar */
+            color: white;
+        }
+
+        .letter-btn.wrong {
+            background: #E53935; /* Vermelho ao errar */
+            color: white;
+        }
+
+        .letter-btn:disabled {
+            cursor: not-allowed;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
         }
