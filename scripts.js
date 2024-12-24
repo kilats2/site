@@ -85,157 +85,134 @@
         });
 
         const secretWord = "TEAMO";
-            let guessedWord = Array(secretWord.length).fill("_");
-            let attempts = 6;
-            const hangmanStages = [
-                `
+let guessedWord = Array(secretWord.length).fill("_");
+let attempts = 6;
 
-            +---+
-            |   |
-                |
-                |
-                |
-                |
-            =========`,
-                `
+const wordDisplay = document.getElementById("word-display");
+const lettersContainer = document.getElementById("letters-container");
+const hangmanElement = document.getElementById("hangman");
+const message = document.getElementById("message");
 
-            +---+
-            |   |
-            O   |
-                |
-                |
-                |
-            =========`,
-                `
+function updateWordDisplay() {
+    wordDisplay.textContent = guessedWord.join(" ");
+}
 
-            +---+
-            |   |
-            O   |
-            |   |
-                |
-                |
-            =========`,
-                `
+function createLetterButtons() {
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (let letter of alphabet) {
+        const button = document.createElement("button");
+        button.textContent = letter;
+        button.classList.add("letter-btn");
+        button.addEventListener("click", () => guessLetter(letter, button));
+        lettersContainer.appendChild(button);
+    }
+}
 
-            +---+
-            |   |
-            O   |
-            /|   |
-                |
-                |
-            =========`,
-                `
+function guessLetter(letter, button) {
+    let correct = false;
+    for (let i = 0; i < secretWord.length; i++) {
+        if (secretWord[i] === letter) {
+            guessedWord[i] = letter;
+            correct = true;
+        }
+    }
 
-            +---+
-            |   |
-            O   |
-            /|\\  |
-                |
-                |
-            =========`,
-                `
+    button.classList.add(correct ? "correct" : "wrong");
+    button.disabled = true;
 
-            +---+
-            |   |
-            O   |
-            /|\\  |
-            /    |
-                |
-            =========`,
-                `
+    if (!correct) {
+        attempts--;
+        updateHangman();
+    }
+    updateWordDisplay();
+    checkGameStatus();
+}
 
-            +---+
-            |   |
-            O   |
-            /|\\  |
-            / \\  |
-                |
-            =========`
-            ];
+function updateHangman() {
+    const hangmanStages = [
+        `
 
-            const wordDisplay = document.getElementById("word-display");
-            const lettersContainer = document.getElementById("letters-container");
-            const message = document.getElementById("message");
-            const hangmanElement = document.getElementById("hangman");
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========`,
+        `
 
-            function updateWordDisplay() {
-                wordDisplay.textContent = guessedWord.join(" ");
-            }
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========`,
+        `
 
-            function updateHangman() {
-                hangmanElement.innerHTML = `<pre>${hangmanStages[6 - attempts]}</pre>`;
-            }
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========`,
+        `
 
-            function createLetterButtons() {
-                const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-                for (let letter of alphabet) {
-                    const button = document.createElement("button");
-                    button.textContent = letter;
-                    button.classList.add("letter-btn");
-                    button.addEventListener("click", () => guessLetter(letter, button));
-                    lettersContainer.appendChild(button);
-                }
-            }
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========`,
+        `
 
-            function guessLetter(letter, button) {
-                let correct = false;
+  +---+
+  |   |
+  O   |
+ /|\\  |
+      |
+      |
+=========`,
+        `
 
-                // Verifica se a letra está na palavra
-                for (let i = 0; i < secretWord.length; i++) {
-                    if (secretWord[i] === letter) {
-                        guessedWord[i] = letter;
-                        correct = true;
-                    }
-                }
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ /    |
+      |
+=========`,
+        `
 
-                // Se acertar, botão fica verde; se errar, vermelho
-                if (correct) {
-                    button.classList.add("correct");
-                } else {
-                    button.classList.add("wrong");
-                    attempts--;
-                    updateHangman();
-                }
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ / \\  |
+      |
+=========`
+    ];
+    hangmanElement.innerHTML = `<pre>${hangmanStages[6 - attempts]}</pre>`;
+}
 
-                button.disabled = true;
-                updateWordDisplay();
-                checkGameStatus();
-            }
+function checkGameStatus() {
+    if (guessedWord.join("") === secretWord) {
+        message.textContent = "HAHAHAHAHAH ACERTOUUUU!!! TE AMO ❤️";
+        message.style.color = "green";
+        disableAllButtons();
+    } else if (attempts <= 0) {
+        message.textContent = `ERROUUU!!! NÃO ME AMA MAIS 😢.`;
+        message.style.color = "red";
+        disableAllButtons();
+    }
+}
 
-            function checkGameStatus() {
-                if (guessedWord.join("") === secretWord) {
-                    message.textContent = "HAHAHAHAHAH ACERTOUUUU!!! TE AMO ❤️";
-                    message.style.color = "green";
-                    disableAllButtons();
-                    showHearts();
-                } else if (attempts <= 0) {
-                    message.textContent = `ERROUUU!!! NÃO ME AMA MAIS 😢.`;
-                    message.style.color = "red";
-                    disableAllButtons();
-                }
-            }
+function disableAllButtons() {
+    const buttons = document.querySelectorAll(".letter-btn");
+    buttons.forEach(button => button.disabled = true);
+}
 
-            function disableAllButtons() {
-                const buttons = document.querySelectorAll(".letter-btn");
-                buttons.forEach(button => button.disabled = true);
-            }
-
-            function showHearts() {
-                for (let i = 0; i < 30; i++) {
-                    const heart = document.createElement('div');
-                    heart.classList.add('heart');
-                    heart.textContent = '❤️';
-                    heart.style.left = `${Math.random() * 100}%`;
-                    heart.style.animationDuration = `${Math.random() * 3 + 2}s`;
-                    document.body.appendChild(heart);
-
-                    setTimeout(() => {
-                        heart.remove();
-                    }, 5000);
-                }
-            }
-
-            // Inicializar o jogo
-            createLetterButtons();
-            updateWordDisplay();
-            updateHangman();
+createLetterButtons();
+updateWordDisplay();
