@@ -75,7 +75,7 @@
             margin-bottom: 10px;
         }
 
-        /* "Juntos:" acima do contador */
+        /* "Juntoss:" acima do contador */
         .together {
             font-size: 1.2rem;
             text-align: center;
@@ -105,16 +105,20 @@
             pointer-events: none;
         }
 
-        @keyframes fall {
-            0% {
-                top: -10%;
-                opacity: 1;
-            }
-            100% {
-                top: 100%;
-                opacity: 0;
-            }
-        }
+     @keyframes fall {
+    0% {
+        top: -10%;
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;  /* Mantém a opacidade até 70% do percurso */
+    }
+    100% {
+        top: 100%;
+        opacity: 0;  /* Desaparece suavemente no final */
+    }
+}
+
 
         /* Design responsivo */
         @media (max-width: 768px) {
