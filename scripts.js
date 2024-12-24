@@ -51,7 +51,7 @@
         setInterval(updateGallery, 3500);
 
         // Animação de corações com limite maior
-        const maxHearts = 30; // Limite maior de corações
+        const maxHearts = 15; // Limite maior de corações
         const heartElements = [];
 
         function createHeart() {
@@ -61,7 +61,7 @@
             heart.classList.add('heart');
             heart.textContent = '❤️';
             heart.style.left = `${Math.random() * 100}%`;
-            heart.style.animationDuration = `${Math.random() * 2 + 3}s`;
+            heart.style.animationDuration = `${Math.random() * 3 + 4}s`;
             document.body.appendChild(heart);
             heartElements.push(heart);
 
@@ -71,7 +71,7 @@
             });
         }
 
-        setInterval(createHeart, 300); // Corações aparecendo mais rápido
+        setInterval(createHeart, 600); // Corações aparecendo mais rápido
 
         // Controle de reprodução de música
         const playButton = document.getElementById('play-button');
